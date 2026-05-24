@@ -1,12 +1,18 @@
-import { db } from '@/db';
-import { people, events } from '@/db/schema';
-import { asc } from 'drizzle-orm';
 import { Timeline } from '@/components/Timeline';
 import type { Person, TimelineEvent } from '@/lib/types';
+import { SEED_PEOPLE, SEED_EVENTS } from '@/lib/seed-data';
 
 export const dynamic = 'force-dynamic';
 
-export default async function Home() {
+async function getData(): Promise<{ people: Person[]; events: TimelineEvent[] }> {
+  if (!process.env.DATABASE_URL || process.env.DATABASE_URL.includes('user:pass@host')) {
+    return { people: SEED_PEOPLE, events: SEED_EVENTS };
+  }
+
+  const { db } = await import('@/db');
+  const { people, events } = await import('@/db/schema');
+  const { asc } = await import('drizzle-orm');
+
   const peopleRows = await db.select().from(people).orderBy(asc(people.id));
   const eventRows = await db.select().from(events).orderBy(asc(events.date));
 
@@ -30,5 +36,10 @@ export default async function Home() {
     sharedWith: e.sharedWith ?? [],
   }));
 
-  return <Timeline people={peopleData} initialEvents={eventsData} />;
+  return { people: peopleData, events: eventsData };
+}
+
+export default async function Home() {
+  const { people, events } = await getData();
+  return <Timeline people={people} initialEvents={events} />;
 }
