@@ -8,10 +8,14 @@ export function ImagePlaceholder({ event, height = '180px', radius = 10, style: 
   style?: React.CSSProperties;
 }) {
   const hasImage = !!event.imageUrl;
+  let imgSrc = event.imageUrl;
+  if (hasImage && event.imageUrl!.includes('.blob.vercel-storage.com') && !event.imageUrl!.startsWith('/api/image')) {
+    imgSrc = `/api/image?url=${encodeURIComponent(event.imageUrl!)}`;
+  }
   return (
     <div className={"img-placeholder" + (hasImage ? " has-image" : "")} style={{ height, borderRadius: radius, ...extraStyle }}>
       {hasImage ? (
-        <img src={event.imageUrl!} alt={event.imageCaption || event.title} />
+        <img src={imgSrc!} alt={event.imageCaption || event.title} />
       ) : (
         event.imageCaption || 'Drop an image'
       )}

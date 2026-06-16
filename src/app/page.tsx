@@ -5,7 +5,7 @@ import { SEED_PEOPLE, SEED_EVENTS } from '@/lib/seed-data';
 export const dynamic = 'force-dynamic';
 
 async function getData(): Promise<{ people: Person[]; events: TimelineEvent[] }> {
-  if (!process.env.DATABASE_URL || process.env.DATABASE_URL.includes('user:pass@host')) {
+  if (!process.env.DATABASE_URL) {
     return { people: SEED_PEOPLE, events: SEED_EVENTS };
   }
 

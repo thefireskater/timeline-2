@@ -438,3 +438,98 @@ input, textarea, select {
 .mono { font-family: var(--font-mono); }
 .serif { font-family: var(--font-serif); }
 .italic { font-style: italic; }
+
+/* ── Mobile responsive ── */
+@media (max-width: 768px) {
+  .topbar{
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 12px;
+    padding: 16px 16px 14px;
+  }
+  .brand .meta{ display: none; }
+  .top-actions{ justify-content: center; }
+  .pill .k{ display: none; }
+
+  .stage{ padding: 16px 12px 60px; }
+
+  .range-bar{
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    padding: 12px 14px;
+  }
+  .range-bar > div:first-child{
+    justify-content: space-between;
+  }
+  .people-strip{
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .scrim{
+    text-align: center;
+    font-size: 15px;
+  }
+  .scrim .count{ display: block; margin-left: 0; margin-top: 4px; }
+
+  .modal-back{ padding: 16px; }
+  .modal{ border-radius: 14px; }
+  .modal-body{ padding: 18px 16px; }
+  .modal h2{ font-size: 22px; }
+
+  .person-grid{ grid-template-columns: repeat(3, 1fr); }
+  .kind-pick, .priv-pick{ flex-wrap: wrap; }
+}
+
+/* ── Vertical view mobile: stack cards, hide axis ── */
+@media (max-width: 768px) {
+  .v-view{ padding: 10px 0 40px; }
+  .v-axis{ display: none; }
+  .v-row{
+    grid-template-columns: 1fr !important;
+    gap: 0 !important;
+  }
+  .v-axis-marker{
+    display: flex !important;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px;
+    padding: 0 0 6px;
+  }
+  .v-axis-marker .day{
+    position: static !important;
+    top: auto !important;
+  }
+  .v-axis-marker .dot{
+    position: static !important;
+    top: auto !important;
+    width: 12px; height: 12px;
+    box-shadow: none;
+    flex-shrink: 0;
+  }
+  .v-card.left, .v-card.right{
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  .v-card .ttl{ font-size: 18px; }
+}
+
+/* ── Grid view mobile ── */
+@media (max-width: 768px) {
+  .g-view{ grid-template-columns: 1fr !important; }
+}
+
+/* ── Horizontal view mobile: scroll horizontally ── */
+@media (max-width: 768px) {
+  .stage{ overflow-x: auto; }
+  .h-view{ min-width: 600px; }
+  .h-leg{ display: none; }
+}
+
+@media (max-width: 480px) {
+  .view-switch button{ padding: 6px 12px; font-size: 11px; }
+  .person-chip{ padding: 4px 8px 4px 4px; font-size: 11px; }
+  .person-chip .av{ width: 18px; height: 18px; font-size: 7.5px; }
+  .seg button{ padding: 5px 10px; font-size: 11px; }
+  .person-grid{ grid-template-columns: repeat(2, 1fr); }
+}

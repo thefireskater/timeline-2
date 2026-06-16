@@ -47,9 +47,11 @@ export function AddEventModal({ people, onClose, onSave }: {
       if (data.url) {
         setImageUrl(data.url);
         if (!imageCaption) setImageCaption(file.name.replace(/\.[^.]+$/, ''));
+      } else {
+        alert(data.error || 'Upload failed');
       }
-    } catch {
-      // upload failed silently
+    } catch (err) {
+      alert('Upload failed: ' + (err instanceof Error ? err.message : 'Unknown error'));
     } finally {
       setUploading(false);
     }

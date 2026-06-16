@@ -83,7 +83,7 @@ export function VerticalView({ events, range, people, onOpenEvent }: {
         .v-card .note{ font-size: 13px; line-height: 1.55; color: var(--ink-2); text-wrap: pretty; }
         .v-card.left  { margin-right: 14px;  border-left: 3px solid var(--dotc); }
         .v-card.right { margin-left: 14px;   border-right: 3px solid var(--dotc); }
-        .v-axis-marker{ display: grid; place-items: center; position: relative; }
+        .v-axis-marker{ display: grid; place-items: center; position: relative; overflow: visible; min-height: 54px; }
         .v-axis-marker .day{
           position: absolute; top: 14px; z-index: 2; background: var(--paper);
           font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em;
